@@ -1,19 +1,21 @@
 import React from 'react';
-import Player from './components/Player'
-import Song from './components/Song'
-import './scss/main.scss'
-import data from './utils';
+import Library from './components/Library';
+import Player from './components/Player';
+import Cover from './components/Cover';
+import './scss/main.scss';
+import { chilhop } from './utils';
 
 const App = () => {
+  const [isPaused, setIsPaused] = React.useState(false)
   const [isPlaying, setIsPlaying] = React.useState(false)
-  const [song, setSong] = React.useState(data())
-  const [currentSong, setCurrentSong] = React.useState(song[0])
+  const [songs, setSongs] = React.useState(chilhop())
+  const [currentSong, setCurrentSong] = React.useState(songs[1])
 
   return (
     <div className="app" >
-      <h1>Музыкальный плеер!</h1>
-      <Song isPlaying={isPlaying} currentSong={currentSong} />
-      <Player isPlaying={isPlaying} setIsPlaying={setIsPlaying} currentSong={currentSong} />
+      <Cover isPlaying={isPlaying} isPaused={isPaused} currentSong={currentSong} />
+      <Player isPlaying={isPlaying} setIsPlaying={setIsPlaying} isPaused={isPaused} setIsPaused={setIsPaused} currentSong={currentSong} />
+      <Library setIsPlaying={setIsPlaying} setCurrentSong={setCurrentSong} songs={songs} />
     </div>
   );
 }

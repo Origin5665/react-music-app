@@ -1,0 +1,47 @@
+.library {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 20rem;
+   height: 100%;
+   background-color: rgba(231, 231, 231, 0.794);
+   box-shadow: 1px 1px 20px gray;
+   overflow: auto;
+   border-radius: 3px;
+
+   &__list {
+      list-style-type: none;
+      gap: 20px;
+      padding: 0.7rem 1rem 1rem 1rem;
+      display: flex;
+      flex-direction: column;
+
+
+   }
+
+   &__title {
+      font-size: 24px;
+      // text-align: center;
+      padding: 0.8rem 1rem;
+   }
+}
+
+* {
+   scrollbar-width: thin;
+   scrollbar-color: rgba(128, 128, 128, 0.678) transparent;
+
+}
+
+*::-webkit-scrollbar {
+   width: 5px;
+}
+
+*::-webkit-scrollbar-track {
+   background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+   background: rgba(112, 112, 112, 0.787);
+   border-radius: 10px;
+   border: transparent
+}

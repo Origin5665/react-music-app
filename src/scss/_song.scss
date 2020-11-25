@@ -1,41 +1,28 @@
 @import './mixin.scss';
 
-@keyframes rotation {
-   0% {
-      -webkit-transform: rotate(0deg);
-      -moz-transform: rotate(0deg);
-      -o-transform: rotate(0deg);
-      transform: rotate(0deg);
-   }
-
-   100% {
-      -webkit-transform: rotate(360deg);
-      -moz-transform: rotate(360deg);
-      -o-transform: rotate(360deg);
-      transform: rotate(360deg);
-   }
-}
-
 .song {
-   min-height: 60vh;
-   @include grid;
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   align-items: center;
+   cursor: pointer;
 
-   &__cover {
-      width: 25%;
-      border-radius: 50%;
+   &:hover {
+      background-color: rgba(39, 164, 120, 0.542);
+      transition: background .3s ease-in-out;
    }
 
-   &__cover_play {
-      animation: rotation linear 15s infinite;
+   &__image {
+      width: 75%;
    }
 
    &__title {
-      padding: 2rem 1rem 1rem 1rem;
-
+      color: $font-red;
+      font-size: 18px;
+      font-weight: 600;
    }
 
-   &__artist {
-      padding: 1rem;
-      font-weight: 600;
+   &__author {
+      color: $font-black;
+      font-size: 14px;
    }
 }

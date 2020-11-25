@@ -1,6 +1,8 @@
 @import './player';
+@import './cover';
+@import './library';
 @import './song';
-
+@import './mixin.scss';
 
 * {
    padding: 0;
@@ -8,10 +10,8 @@
    box-sizing: border-box;
 }
 
-
-
 .app {
    font-family: 'Nunito', sans-serif;
-   color: rgb(22, 22, 22);
-   background-color: rgb(226, 226, 226)
+   color: $font-black;
+
 }

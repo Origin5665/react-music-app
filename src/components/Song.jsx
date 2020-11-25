@@ -1,16 +1,22 @@
-import React from 'react'
-import classnames from 'classnames';
-const Song = ({ currentSong, isPlaying }) => {
+import React from 'react';
 
-   const { cover, name, artist } = currentSong
+const Song = ({ songs, image, id, title, author, setCurrentSong, setIsPlaying }) => {
+
+   const selectedSong = () => {
+      const selected = songs.filter(song => song.id === id)
+      setCurrentSong(selected[0])
+      setIsPlaying(false)
+   }
 
    return (
-      <div className="song">
-         <img className={classnames("song__cover", isPlaying && "song__cover_play")} src={cover} alt="Обложка альбома" />
-         <h2 className="song__title">{name}</h2>
-         <h3 className="song__artist">{artist}</h3>
-      </div>
+      <li onClick={(e) => selectedSong(e)} className="song">
+         <img className="song__image" alt={'Обложка альбома'} src={image} />
+         <div>
+            <h3 className="song__title">{title}</h3>
+            <p className="song__author">{author}</p>
+         </div>
+      </li>
    );
 };
 
-export default Song
+export default Song;
