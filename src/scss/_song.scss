@@ -1,0 +1,41 @@
+@import './mixin.scss';
+
+@keyframes rotation {
+   0% {
+      -webkit-transform: rotate(0deg);
+      -moz-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      transform: rotate(0deg);
+   }
+
+   100% {
+      -webkit-transform: rotate(360deg);
+      -moz-transform: rotate(360deg);
+      -o-transform: rotate(360deg);
+      transform: rotate(360deg);
+   }
+}
+
+.song {
+   min-height: 60vh;
+   @include grid;
+
+   &__cover {
+      width: 25%;
+      border-radius: 50%;
+   }
+
+   &__cover_play {
+      animation: rotation linear 15s infinite;
+   }
+
+   &__title {
+      padding: 2rem 1rem 1rem 1rem;
+
+   }
+
+   &__artist {
+      padding: 1rem;
+      font-weight: 600;
+   }
+}

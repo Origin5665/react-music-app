@@ -1,0 +1,44 @@
+@import './mixin.scss';
+
+.player__wrapper {
+   min-height: 20vh;
+   @include grid;
+
+}
+
+
+
+
+// Time Controll:
+
+.timeControll {
+   @include controll;
+   justify-content: space-between;
+   width: 50%;
+
+   &__input {
+      width: 100%;
+      padding: 1rem 2rem;
+      // justify-content: center;
+
+   }
+
+   cursor: pointer;
+
+   p {
+      padding: 1rem;
+   }
+
+}
+
+// Play Controll: 
+
+.playControll {
+   @include controll;
+   justify-content: space-between;
+   width: 25%;
+
+   svg {
+      cursor: pointer;
+   }
+}
