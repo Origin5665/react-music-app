@@ -3,15 +3,18 @@ import { getTime } from '../utils';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faAngleLeft, faAngleRight, faPause } from "@fortawesome/free-solid-svg-icons";
 
-const Player = ({ currentSong, setIsPlaying, isPlaying, isPaused, setIsPaused }) => {
+const Player = ({
+   setIsPlaying,
+   isPlaying,
+   audioStream,
+   setSongInfo,
+   songInfo,
+   setIsPaused }) => {
 
-   const { audio } = currentSong;
-   const audioStream = React.useRef(null);
+
+
    const inputRange = React.useRef(null)
-   const [songInfo, setSongInfo] = React.useState({
-      currentTime: 0,
-      duration: 0
-   })
+
 
    const handlerPlay = () => {
       audioStream.current.play();
@@ -25,15 +28,7 @@ const Player = ({ currentSong, setIsPlaying, isPlaying, isPaused, setIsPaused })
       setIsPaused(true)
    };
 
-   const handlerTime = (e) => {
-      const current = e.target.currentTime;
-      const duration = e.target.duration;
-      setSongInfo({
-         ...songInfo,
-         currentTime: Math.trunc(current),
-         duration: duration
-      });
-   };
+
 
    const handlerInput = (e) => {
 
@@ -69,7 +64,7 @@ const Player = ({ currentSong, setIsPlaying, isPlaying, isPaused, setIsPaused })
                : <FontAwesomeIcon onClick={handlerPause} icon={faPause} size={"3x"} className={"playControll__play"} />}
             <FontAwesomeIcon icon={faAngleRight} size={"2x"} className={"playControll__skipForward"} />
          </div>
-         <audio preload={'true'} onLoadedMetadata={handlerTime} onTimeUpdate={handlerTime} ref={audioStream} src={audio}></audio>
+
       </div>
    );
 };

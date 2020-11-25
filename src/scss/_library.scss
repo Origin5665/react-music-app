@@ -4,10 +4,16 @@
    left: 0;
    width: 20rem;
    height: 100%;
-   background-color: rgba(231, 231, 231, 0.794);
+   background-color: rgba(231, 231, 231, 0.993);
    box-shadow: 1px 1px 20px gray;
    overflow: auto;
    border-radius: 3px;
+   transform: translateX(-110%);
+   transition: all 0.5s ease-in-out;
+
+   &_active {
+      transform: translateX((0));
+   }
 
    &__list {
       list-style-type: none;
@@ -15,13 +21,10 @@
       padding: 0.7rem 1rem 1rem 1rem;
       display: flex;
       flex-direction: column;
-
-
    }
 
    &__title {
       font-size: 24px;
-      // text-align: center;
       padding: 0.8rem 1rem;
    }
 }

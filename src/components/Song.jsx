@@ -1,15 +1,31 @@
 import React from 'react';
+import classNames from 'classnames';
 
-const Song = ({ songs, image, id, title, author, setCurrentSong, setIsPlaying }) => {
+const Song = ({ setSongs, songs, isPlaying, image, id, active, title, author, setCurrentSong, audioStream }) => {
 
-   const selectedSong = () => {
+   const selectedSong = async () => {
       const selected = songs.filter(song => song.id === id)
       setCurrentSong(selected[0])
-      setIsPlaying(false)
-   }
+      if (isPlaying) {
+         try {
+            const promise = await audioStream.current.play()
+            audioStream.current.play()
+         } catch (er) {
+            console.log(er);
+         }
+      };
+      const newSongs = songs.map(song => {
+         if (song.id === id) {
+            return { ...song, active: true }
+         } else {
+            return { ...song, active: false }
+         }
+      })
+      setSongs(newSongs)
+   };
 
    return (
-      <li onClick={(e) => selectedSong(e)} className="song">
+      <li onClick={(e) => selectedSong(e)} className={classNames("song", active && "song_active")}>
          <img className="song__image" alt={'Обложка альбома'} src={image} />
          <div>
             <h3 className="song__title">{title}</h3>

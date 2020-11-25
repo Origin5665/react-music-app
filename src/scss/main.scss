@@ -3,6 +3,7 @@
 @import './library';
 @import './song';
 @import './mixin.scss';
+@import './navigate';
 
 * {
    padding: 0;
@@ -10,8 +11,77 @@
    box-sizing: border-box;
 }
 
+body {
+   // background: linear-gradient(273deg, #0f9414, #2f7df6);
+   // background-size: 400% 400%;
+
+   // -webkit-animation: AnimationName 37s ease infinite;
+   // -moz-animation: AnimationName 37s ease infinite;
+   // -o-animation: AnimationName 37s ease infinite;
+   // animation: AnimationName 37s ease infinite;
+}
+
 .app {
    font-family: 'Nunito', sans-serif;
    color: $font-black;
 
+
+}
+
+.css-selector {}
+
+@-webkit-keyframes AnimationName {
+   0% {
+      background-position: 86% 0%
+   }
+
+   50% {
+      background-position: 15% 100%
+   }
+
+   100% {
+      background-position: 86% 0%
+   }
+}
+
+@-moz-keyframes AnimationName {
+   0% {
+      background-position: 86% 0%
+   }
+
+   50% {
+      background-position: 15% 100%
+   }
+
+   100% {
+      background-position: 86% 0%
+   }
+}
+
+@-o-keyframes AnimationName {
+   0% {
+      background-position: 86% 0%
+   }
+
+   50% {
+      background-position: 15% 100%
+   }
+
+   100% {
+      background-position: 86% 0%
+   }
+}
+
+@keyframes AnimationName {
+   0% {
+      background-position: 86% 0%
+   }
+
+   50% {
+      background-position: 15% 100%
+   }
+
+   100% {
+      background-position: 86% 0%
+   }
 }

@@ -15,20 +15,16 @@
    @include controll;
    justify-content: space-between;
    width: 50%;
+   grid-template-columns: auto 1fr auto;
+   cursor: pointer;
 
    &__input {
       width: 100%;
-      // padding: 1rem 2rem;
-      // justify-content: center;
-
    }
-
-   cursor: pointer;
 
    p {
       padding: 1rem;
    }
-
 }
 
 // Play Controll: 
@@ -37,6 +33,7 @@
    @include controll;
    justify-content: space-between;
    width: 25%;
+   grid-template-columns: auto auto auto;
 
    svg {
       cursor: pointer;
