@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { playSkipSong } from '../utils';
+
 const Song = ({ setSongs, songs, isPlaying, image, id, active, title, author, setCurrentSong, audioStream }) => {
 
    const selectedSong = async () => {
