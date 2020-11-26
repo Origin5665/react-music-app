@@ -36,6 +36,14 @@
       border-radius: 50%;
    }
 
+   &__input[type="range"]::-moz-range-thumb {
+      -webkit-appearance: none;
+
+      background-color: transparent;
+
+      border: none;
+   }
+
    p {
       padding: 1rem;
    }
@@ -47,8 +55,6 @@
       position: relative;
       overflow: hidden;
       border-radius: 15px;
-
-
    }
 
    &__animate-track {
@@ -61,7 +67,7 @@
       z-index: 0;
       transform: translateX(0%);
       pointer-events: none;
-      // ??
+
    }
 
    @media screen and (max-width:414px) {

@@ -2,7 +2,7 @@ import React from 'react';
 import { getTime } from '../utils';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faAngleLeft, faAngleRight, faPause } from "@fortawesome/free-solid-svg-icons";
-// import { playSkipSong } from '../utils';
+
 const Player = ({
    songs,
    setSongs,
@@ -57,27 +57,41 @@ const Player = ({
       })
    };
 
+   const activeLibrarySongHandler = (nextSong) => {
+      const newSongs = songs.map(song => {
+         if (song.id === nextSong.id) {
+            return { ...song, active: true }
+         } else {
+            return { ...song, active: false }
+         }
+      })
+      setSongs(newSongs);
+   };
+
+
    const skipTrackHandler = async (direction) => {
-      let songIndex = songs.findIndex(song => song.id === currentSong.id)
+      let songIndex = songs.findIndex(song => song.id === currentSong.id);
       if (direction === 'forward') {
-         await setCurrentSong(songs[(songIndex + 1) % songs.length])
+         await setCurrentSong(songs[(songIndex + 1) % songs.length]);
+         activeLibrarySongHandler(songs[(songIndex + 1) % songs.length]);
       }
       if (direction === 'back') {
          if ((songIndex - 1) % songs.length === -1) {
-            await setCurrentSong(songs[songs.length - 1])
-            if (isPlaying) audioStream.current.play()
+            await setCurrentSong(songs[songs.length - 1]);
+            activeLibrarySongHandler(songs[songs.length - 1]);
+            if (isPlaying) audioStream.current.play();
             return
          }
-         await setCurrentSong(songs[(songIndex - 1) % songs.length])
+         await setCurrentSong(songs[(songIndex - 1) % songs.length]);
+         activeLibrarySongHandler(songs[songs.length - 1]);
       }
-      if (isPlaying) audioStream.current.play()
-      // playSkipSong(isPlaying, audioStream)
-   }
+      if (isPlaying) audioStream.current.play();
+
+   };
 
 
    return (
       <div className="player__wrapper">
-
          <div className="timeControll">
             <p>{songInfo.duration ? getTime(songInfo.currentTime) : "--:--"}</p>
             <div style={trackBackground} className="timeControll__track">
@@ -92,8 +106,6 @@ const Player = ({
                   name="" id="" />
                <div style={trackAnimate} className="timeControll__animate-track"></div>
             </div>
-
-
             <p>{songInfo.duration ? getTime(songInfo.duration) : "--:--"}</p>
          </div>
          <div className="playControll">
