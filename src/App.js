@@ -12,7 +12,7 @@ const App = () => {
   const [isPaused, setIsPaused] = React.useState(false);
   const [isPlaying, setIsPlaying] = React.useState(false);
   const [songs, setSongs] = React.useState(chilhop());
-  const [currentSong, setCurrentSong] = React.useState(songs[1]);
+  const [currentSong, setCurrentSong] = React.useState(songs[0]);
   const [songInfo, setSongInfo] = React.useState({ currentTime: 0, duration: 0 })
   const audioStream = React.useRef(null);
 
@@ -30,7 +30,7 @@ const App = () => {
     <div className="app" >
       <Navigate isPushed={isPushed} setIsPushed={setIsPushed} />
       <Cover isPlaying={isPlaying} isPaused={isPaused} currentSong={currentSong} />
-      <Player songInfo={songInfo} setSongInfo={setSongInfo} audioStream={audioStream} isPlaying={isPlaying} setIsPlaying={setIsPlaying} setIsPaused={setIsPaused} />
+      <Player setSongs={setSongs} currentSong={currentSong} setCurrentSong={setCurrentSong} songs={songs} songInfo={songInfo} setSongInfo={setSongInfo} audioStream={audioStream} isPlaying={isPlaying} setIsPlaying={setIsPlaying} setIsPaused={setIsPaused} />
       <Library isPushed={isPushed} setSongs={setSongs} audioStream={audioStream} setIsPlaying={setIsPlaying} isPlaying={isPlaying} setCurrentSong={setCurrentSong} songs={songs} />
       <audio preload={'true'} onLoadedMetadata={handlerTime} onTimeUpdate={handlerTime} ref={audioStream} src={currentSong.audio}></audio>
     </div>

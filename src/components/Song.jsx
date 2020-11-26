@@ -1,19 +1,12 @@
 import React from 'react';
 import classNames from 'classnames';
-
+import { playSkipSong } from '../utils';
 const Song = ({ setSongs, songs, isPlaying, image, id, active, title, author, setCurrentSong, audioStream }) => {
 
    const selectedSong = async () => {
       const selected = songs.filter(song => song.id === id)
       setCurrentSong(selected[0])
-      if (isPlaying) {
-         try {
-            const promise = await audioStream.current.play()
-            audioStream.current.play()
-         } catch (er) {
-            console.log(er);
-         }
-      };
+      playSkipSong(isPlaying, audioStream)
       const newSongs = songs.map(song => {
          if (song.id === id) {
             return { ...song, active: true }
