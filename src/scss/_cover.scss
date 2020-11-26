@@ -40,12 +40,32 @@
    }
 
    &__title {
-      padding: 2rem 1rem 1rem 1rem;
+      padding: 1rem 1rem 0.5rem 1rem;
 
    }
 
    &__artist {
-      padding: 1rem;
+      padding: 0.4rem;
       font-weight: 600;
+   }
+
+   @media screen and (max-width:1024px) {
+      &__image {
+         width: 45%;
+      }
+
+   }
+
+   @media screen and (max-width:768px) {
+      &__image {
+         width: 50%;
+      }
+
+   }
+
+   @media screen and (max-width:414px) {
+      &__image {
+         width: 70%;
+      }
    }
 }

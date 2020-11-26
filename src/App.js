@@ -13,18 +13,32 @@ const App = () => {
   const [isPlaying, setIsPlaying] = React.useState(false);
   const [songs, setSongs] = React.useState(chilhop());
   const [currentSong, setCurrentSong] = React.useState(songs[0]);
-  const [songInfo, setSongInfo] = React.useState({ currentTime: 0, duration: 0 })
+  const [songInfo, setSongInfo] = React.useState({ currentTime: 0, duration: 0, animatinPercent: 0 })
   const audioStream = React.useRef(null);
 
   const handlerTime = (e) => {
     const current = e.target.currentTime;
     const duration = e.target.duration;
+    const roundedCurrent = Math.round(current)
+    const roundedDuration = Math.round(duration)
+    const roundedPercent = Math.round((roundedCurrent / roundedDuration) * 100)
+    console.log(roundedCurrent, roundedDuration, roundedPercent);
     setSongInfo({
       ...songInfo,
       currentTime: current,
-      duration: duration
+      duration: duration,
+      animatinPercent: roundedPercent
     });
   };
+
+  const songEndHandler = async () => {
+    let songIndex = songs.findIndex(song => song.id === currentSong.id)
+    await setCurrentSong(songs[(songIndex + 1) % songs.length])
+    if (isPlaying) audioStream.current.play()
+
+
+  }
+
 
   return (
     <div className="app" >
@@ -32,7 +46,7 @@ const App = () => {
       <Cover isPlaying={isPlaying} isPaused={isPaused} currentSong={currentSong} />
       <Player setSongs={setSongs} currentSong={currentSong} setCurrentSong={setCurrentSong} songs={songs} songInfo={songInfo} setSongInfo={setSongInfo} audioStream={audioStream} isPlaying={isPlaying} setIsPlaying={setIsPlaying} setIsPaused={setIsPaused} />
       <Library isPushed={isPushed} setSongs={setSongs} audioStream={audioStream} setIsPlaying={setIsPlaying} isPlaying={isPlaying} setCurrentSong={setCurrentSong} songs={songs} />
-      <audio preload={'true'} onLoadedMetadata={handlerTime} onTimeUpdate={handlerTime} ref={audioStream} src={currentSong.audio}></audio>
+      <audio onEnded={songEndHandler} preload={'true'} onLoadedMetadata={handlerTime} onTimeUpdate={handlerTime} ref={audioStream} src={currentSong.audio}></audio>
     </div>
   );
 }

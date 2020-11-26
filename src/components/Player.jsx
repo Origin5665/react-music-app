@@ -2,7 +2,7 @@ import React from 'react';
 import { getTime } from '../utils';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faAngleLeft, faAngleRight, faPause } from "@fortawesome/free-solid-svg-icons";
-import { playSkipSong } from '../utils';
+// import { playSkipSong } from '../utils';
 const Player = ({
    songs,
    setSongs,
@@ -26,6 +26,13 @@ const Player = ({
       setSongs(newSongs)
    }, [currentSong])
 
+   const trackAnimate = {
+      transform: `translateX(${songInfo.animatinPercent}%)`,
+
+   }
+   const trackBackground = {
+      background: `linear-gradient(to right, ${currentSong.color[0]}, ${currentSong.color[1]})`
+   }
 
 
    // Play =>
@@ -51,40 +58,41 @@ const Player = ({
    };
 
    const skipTrackHandler = async (direction) => {
-      console.log(direction);
       let songIndex = songs.findIndex(song => song.id === currentSong.id)
       if (direction === 'forward') {
-         setCurrentSong(songs[(songIndex + 1) % songs.length])
-
+         await setCurrentSong(songs[(songIndex + 1) % songs.length])
       }
       if (direction === 'back') {
          if ((songIndex - 1) % songs.length === -1) {
-
-            setCurrentSong(songs[songs.length - 1])
-            return playSkipSong(isPlaying, audioStream)
+            await setCurrentSong(songs[songs.length - 1])
+            if (isPlaying) audioStream.current.play()
+            return
          }
-         setCurrentSong(songs[(songIndex - 1) % songs.length])
+         await setCurrentSong(songs[(songIndex - 1) % songs.length])
       }
-
-      playSkipSong(isPlaying, audioStream)
+      if (isPlaying) audioStream.current.play()
+      // playSkipSong(isPlaying, audioStream)
    }
 
 
    return (
       <div className="player__wrapper">
-         <h2>Плеер</h2>
+
          <div className="timeControll">
             <p>{songInfo.duration ? getTime(songInfo.currentTime) : "--:--"}</p>
+            <div style={trackBackground} className="timeControll__track">
+               <input
+                  value={songInfo.currentTime}
+                  step="1"
+                  onChange={e => handlerInput(e)}
+                  min={0}
+                  max={songInfo.duration || 100}
+                  className="timeControll__input"
+                  type="range"
+                  name="" id="" />
+               <div style={trackAnimate} className="timeControll__animate-track"></div>
+            </div>
 
-            <input
-               value={songInfo.currentTime}
-               step="1"
-               onChange={e => handlerInput(e)}
-               min={0}
-               max={songInfo.duration || 100}
-               className="timeControll__input"
-               type="range"
-               name="" id="" />
 
             <p>{songInfo.duration ? getTime(songInfo.duration) : "--:--"}</p>
          </div>

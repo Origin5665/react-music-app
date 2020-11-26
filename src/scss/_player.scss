@@ -14,17 +14,87 @@
 .timeControll {
    @include controll;
    justify-content: space-between;
-   width: 30%;
+   width: 35%;
    grid-template-columns: auto 1fr auto;
-   cursor: pointer;
+
 
    &__input {
       width: 100%;
+      -webkit-appearance: none;
+      background-color: transparent;
+      cursor: pointer;
+   }
+
+   &__input[type="range"]:focus {
+      outline: 1px solid black;
+   }
+
+   &__input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 16px;
+      width: 16px;
+      border-radius: 50%;
    }
 
    p {
       padding: 1rem;
    }
+
+   &__track {
+      background-color: rgb(133, 47, 75);
+      width: 100%;
+      height: 0.9rem;
+      position: relative;
+      overflow: hidden;
+      border-radius: 15px;
+
+
+   }
+
+   &__animate-track {
+      position: absolute;
+      background-color: rgba(158, 158, 158, 0.568);
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      transform: translateX(0%);
+      pointer-events: none;
+      // ??
+   }
+
+   @media screen and (max-width:414px) {
+
+      p {
+         padding: 0.4rem;
+      }
+   }
+
+}
+
+
+@media screen and (max-width:1024px) {
+   .timeControll {
+      width: 60%;
+   }
+
+
+}
+
+@media screen and (max-width:768px) {
+   .timeControll {
+      width: 70%;
+   }
+
+
+}
+
+@media screen and (max-width:514px) {
+   .timeControll {
+      width: 95%;
+   }
+
 }
 
 // Play Controll: 
@@ -38,4 +108,28 @@
    svg {
       cursor: pointer;
    }
+}
+
+@media screen and (max-width:1024px) {
+   .playControll {
+      width: 38%;
+   }
+
+
+}
+
+@media screen and (max-width:768px) {
+   .playControll {
+      width: 45%;
+   }
+
+
+}
+
+@media screen and (max-width:514px) {
+   .playControll {
+      width: 60%;
+   }
+
+
 }

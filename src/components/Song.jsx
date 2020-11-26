@@ -5,8 +5,9 @@ const Song = ({ setSongs, songs, isPlaying, image, id, active, title, author, se
 
    const selectedSong = async () => {
       const selected = songs.filter(song => song.id === id)
-      setCurrentSong(selected[0])
-      playSkipSong(isPlaying, audioStream)
+      await setCurrentSong(selected[0])
+      if (isPlaying) audioStream.current.play()
+      // playSkipSong(isPlaying, audioStream)
       const newSongs = songs.map(song => {
          if (song.id === id) {
             return { ...song, active: true }
