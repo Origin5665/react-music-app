@@ -1,4 +1,4 @@
-# React Music Player
+# [React Music Player](https://origin5665.github.io/react-music-app/)
 
 Простой музыкальный плеер на чистом React с использованием хуков.
 
