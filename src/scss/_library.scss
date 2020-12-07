@@ -2,7 +2,7 @@
    position: fixed;
    top: 0;
    left: 0;
-   width: 20vw;
+   width: 25vw;
    height: 100%;
    background-color: rgba(231, 231, 231, 0.993);
    box-shadow: 1px 1px 20px gray;
@@ -10,6 +10,14 @@
    border-radius: 3px;
    transform: translateX(-110%);
    transition: all 0.5s ease-in-out;
+
+   @media screen and (max-width:1024px) {
+      width: 35vw;
+   }
+
+   @media screen and (max-width:514px) {
+      width: 100vw;
+   }
 
    &_active {
       transform: translateX((0));
@@ -47,18 +55,4 @@
    background: rgba(112, 112, 112, 0.787);
    border-radius: 10px;
    border: transparent
-}
-
-@media screen and (max-width:1024px) {
-   .library {
-      width: 35vw;
-   }
-
-}
-
-@media screen and (max-width:514px) {
-   .library {
-      width: 100vw;
-   }
-
 }

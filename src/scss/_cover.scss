@@ -1,20 +1,6 @@
 @import './mixin.scss';
 
-@keyframes rotation {
-   0% {
-      -webkit-transform: rotate(0deg);
-      -moz-transform: rotate(0deg);
-      -o-transform: rotate(0deg);
-      transform: rotate(0deg);
-   }
 
-   100% {
-      -webkit-transform: rotate(360deg);
-      -moz-transform: rotate(360deg);
-      -o-transform: rotate(360deg);
-      transform: rotate(360deg);
-   }
-}
 
 .cover {
    min-height: 60vh;
@@ -25,18 +11,17 @@
       width: 25%;
       border-radius: 50%;
 
-   }
+      @media screen and (max-width:1024px) {
+         width: 45%;
+      }
 
-   &__image_play {
-      animation: rotation linear 20s alternate infinite;
-      animation-play-state: running;
+      @media screen and (max-width:768px) {
+         width: 50%;
+      }
 
-   }
-
-   &__image_paused {
-      transition: ease .5s;
-      animation: rotation linear 20s alternate infinite;
-      animation-play-state: paused;
+      @media screen and (max-width:414px) {
+         width: 70%;
+      }
    }
 
    &__title {
@@ -49,23 +34,5 @@
       font-weight: 600;
    }
 
-   @media screen and (max-width:1024px) {
-      &__image {
-         width: 45%;
-      }
 
-   }
-
-   @media screen and (max-width:768px) {
-      &__image {
-         width: 50%;
-      }
-
-   }
-
-   @media screen and (max-width:414px) {
-      &__image {
-         width: 70%;
-      }
-   }
 }

@@ -3,13 +3,9 @@
 .player__wrapper {
    min-height: 20vh;
    @include grid;
-
 }
 
-
-
-
-// Time Controll:
+/* Time Control*/
 
 .timeControll {
    @include controll;
@@ -17,6 +13,17 @@
    width: 35%;
    grid-template-columns: auto 1fr auto;
 
+   @media screen and (max-width:1024px) {
+      width: 60%;
+   }
+
+   @media screen and (max-width:768px) {
+      width: 70%;
+   }
+
+   @media screen and (max-width:514px) {
+      width: 95%;
+   }
 
    &__input {
       width: 100%;
@@ -45,7 +52,7 @@
    }
 
    p {
-      padding: 1rem;
+      padding: 0.5rem;
    }
 
    &__track {
@@ -69,73 +76,36 @@
       pointer-events: none;
 
    }
-
-   @media screen and (max-width:414px) {
-
-      p {
-         padding: 0.4rem;
-      }
-   }
-
 }
 
+/* Play Control*/
 
-@media screen and (max-width:1024px) {
-   .timeControll {
-      width: 60%;
-   }
-
-
-}
-
-@media screen and (max-width:768px) {
-   .timeControll {
-      width: 70%;
-   }
-
-
-}
-
-@media screen and (max-width:514px) {
-   .timeControll {
-      width: 95%;
-   }
-
-}
-
-// Play Controll: 
-
-.playControll {
+.playControl {
    @include controll;
    justify-content: space-between;
    width: 25%;
    grid-template-columns: auto auto auto;
 
-   svg {
-      cursor: pointer;
-   }
-}
-
-@media screen and (max-width:1024px) {
-   .playControll {
+   @media screen and (max-width:1024px) {
       width: 38%;
    }
 
-
-}
-
-@media screen and (max-width:768px) {
-   .playControll {
+   @media screen and (max-width:768px) {
       width: 45%;
    }
 
-
-}
-
-@media screen and (max-width:514px) {
-   .playControll {
+   @media screen and (max-width:514px) {
       width: 60%;
    }
 
+   button {
+      padding: 0.3rem;
+      border: none;
+      background: transparent;
+
+      &:focus {
+         outline: 2px solid rgb(24, 24, 24);
+      }
+   }
 
 }

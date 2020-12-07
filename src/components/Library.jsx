@@ -1,32 +1,28 @@
 import React from 'react'
 import Song from './Song.jsx'
 import classnames from 'classnames';
-const Library = ({ songs, isPushed, setSongs, isPlaying, setIsPlaying, setCurrentSong, audioStream }) => {
+const Library = React.memo(({ songs, isPushed, setSongs, isPlaying, setIsPlaying, setCurrentSong, audioStream }) => {
 
    const songList = songs.map(item =>
       <Song
+         isPlaying={isPlaying}
+         setIsPlaying={setIsPlaying}
          setSongs={setSongs}
-         active={item.active}
          audioStream={audioStream}
          songs={songs}
          setCurrentSong={setCurrentSong}
          key={item.id}
-         image={item.image}
-         author={item.author}
-         title={item.title}
-         id={item.id}
-         isPlaying={isPlaying}
-         setIsPlaying={setIsPlaying}
+         dataSong={item}
       />);
 
    return (
       <div className={classnames("library", isPushed && "library_active")}>
-         <h2 className="library__title">Песни</h2>
+         <h2 className="library__title">Все песни</h2>
          <ul className="library__list">
             {songList}
          </ul>
       </div>
    );
-};
+});
 
 export default Library;
